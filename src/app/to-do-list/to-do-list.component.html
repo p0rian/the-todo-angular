@@ -1,0 +1,25 @@
+<div>
+  <div>
+    <label>Search:</label>
+    <input type="text" #searchInput (input)="filterTodos(searchInput.value)" />
+  </div>
+  <div>
+    <label>Item name: </label
+    ><input id="description" #description type="text" [(ngModel)]="todoName" />
+  </div>
+  <button type="button" (click)="addItem(description.value)">Add item</button>
+  <ul>
+    <li *ngFor="let todo of todos">
+      <label>id: {{ todo.id }} </label>{{ todo.description }}
+      <input type="checkbox" (change)="changeDoneState(todo)" />
+      <span> is done? {{ todo.isDone }}</span>
+      <button type="button" (click)="removeTodo(todo)">remove</button>
+    </li>
+  </ul>
+  <div>
+    <label>Number of items: {{ getTodosCount() }} </label>
+  </div>
+  <div>
+    <label>Number of done items: {{ getDoneTodosCount() }} </label>
+  </div>
+</div>
