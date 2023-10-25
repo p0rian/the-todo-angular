@@ -1,19 +1,46 @@
-<div>
-  <div>
+<div
+  class="bg-yellow-200 rounded w-1/6 h-min p-3 shadow-md m-auto items-center"
+>
+  <div class="my-2">
     <label>Search:</label>
-    <input type="text" #searchInput (input)="filterTodos(searchInput.value)" />
+    <input
+      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      type="text"
+      #searchInput
+      (input)="filterTodos(searchInput.value)"
+    />
   </div>
-  <div>
+  <div class="my-2">
     <label>Item name: </label
-    ><input id="description" #description type="text" [(ngModel)]="todoName" />
+    ><input
+      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      id="description"
+      #description
+      type="text"
+      [(ngModel)]="todoName"
+    />
   </div>
-  <button type="button" (click)="addItem(description.value)">Add item</button>
+  <button
+    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded"
+    type="button"
+    (click)="addItem(description.value)"
+  >
+    Add item
+  </button>
   <ul>
-    <li *ngFor="let todo of todos">
-      <label>id: {{ todo.id }} </label>{{ todo.description }}
+    <li
+      class="my-2 rounded bg-yellow-300 p-1 hover:bg-yellow-400"
+      *ngFor="let todo of todos"
+    >
+      <span class="break-words">{{ todo.description }}</span>
       <input type="checkbox" (change)="changeDoneState(todo)" />
-      <span> is done? {{ todo.isDone }}</span>
-      <button type="button" (click)="removeTodo(todo)">remove</button>
+      <button
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-1 rounded mx-1"
+        type="button"
+        (click)="removeTodo(todo)"
+      >
+        remove
+      </button>
     </li>
   </ul>
   <div>
