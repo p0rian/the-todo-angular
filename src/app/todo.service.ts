@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TodoItem } from './todo-item';
+import { TodoItem } from './interfaces/todo-item';
 import { Observable, of } from 'rxjs';
 import { LocalService } from './local.service';
 
@@ -20,6 +20,7 @@ export class TodoService {
 
     return of(this.todos);
   }
+
   addTodo(todoDescription: string): void {
     const newTodo = {
       id: this.getId(),
@@ -39,16 +40,17 @@ export class TodoService {
     }
   }
 
-  private saveTodos(): void {
-    // Save the updated todos array to localStorage
-    this.localService.saveData(this.key, JSON.stringify(this.todos));
-  }
   filterTodos(searchInput: string): Observable<TodoItem[]> {
     return of(
       this.todos.filter((todo: TodoItem) =>
         todo.description.includes(searchInput)
       )
     );
+  }
+
+  private saveTodos(): void {
+    // Save the updated todos array to localStorage
+    this.localService.saveData(this.key, JSON.stringify(this.todos));
   }
 
   private getId(): number {

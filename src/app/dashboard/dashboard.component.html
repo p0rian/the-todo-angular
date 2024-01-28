@@ -1,3 +1,15 @@
-<div class="w-screen flex items-center justify-center h-screen bg-yellow-50">
-  <app-to-do-list></app-to-do-list>
+<div class="flex flex-row bg-yellow-50 h-screen">
+  <div class="basis-1/5 bg-red-400">
+    <input type="text" #title [(ngModel)]="todoListInput" />
+    <button type="button" (click)="addNewList(title.value)">
+      create new list
+    </button>
+  </div>
+  <div class="basis-4/5 bg-blue-500">
+    <div class="toDoListContainer h-full flex items-center justify-center">
+      <div *ngFor="let list of lists">
+        <app-to-do-list [todoList]="list"></app-to-do-list>
+      </div>
+    </div>
+  </div>
 </div>

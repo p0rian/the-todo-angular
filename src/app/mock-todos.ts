@@ -1,4 +1,4 @@
-import { TodoItem } from './todo-item';
+import { TodoItem } from './interfaces/todo-item';
 export const TODOS: TodoItem[] = [
   { id: 1, description: 'aaaa', isDone: false },
   { id: 2, description: 'bbbb', isDone: false },

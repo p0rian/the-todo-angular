@@ -1,34 +1,50 @@
-<div class="bg-yellow-200 rounded w-max h-min p-3 shadow-md" cdkDrag>
+<div
+  class="bg-yellow-200 rounded w-max h-min p-3 shadow-md relative"
+  cdkDrag
+  cdkDragBoundary=".toDoListContainer"
+>
+  <div class="mb-2 text-center text-xl font-semibold">{{ todoList.title }}</div>
+
+  <!-- Add close icon with styling -->
+  <img
+    src="assets/close.svg"
+    class="absolute top-0 right-0 cursor-pointer w-7 h-7 p-1"
+    (click)="closeList()"
+  />
+
   <div class="my-2">
-    <label>Search:</label>
+    <label class="block">Search:</label>
     <input
       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       type="text"
-      #searchInput
-      (input)="filterTodos(searchInput.value)"
+      [(ngModel)]="searchText"
+      (input)="updateFilteredTodos()"
     />
   </div>
+
   <div class="my-2">
-    <label>Item name: </label
-    ><input
+    <label>Item name: </label>
+    <input
       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       id="description"
       #description
       type="text"
-      [(ngModel)]="todoName"
+      [(ngModel)]="todoInput"
     />
   </div>
+
   <button
     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded"
     type="button"
-    (click)="addItem(description.value)"
+    (click)="add(description.value)"
   >
     Add item
   </button>
+
   <ul>
     <li
       class="my-2 rounded bg-yellow-300 p-1 hover:bg-yellow-400"
-      *ngFor="let todo of todos"
+      *ngFor="let todo of filteredTodos"
     >
       <span class="break-words">{{ todo.description }}</span>
       <input type="checkbox" (change)="changeDoneState(todo)" />
@@ -41,9 +57,11 @@
       </button>
     </li>
   </ul>
+
   <div>
     <label>Number of items: {{ getTodosCount() }} </label>
   </div>
+
   <div>
     <label>Number of done items: {{ getDoneTodosCount() }} </label>
   </div>
