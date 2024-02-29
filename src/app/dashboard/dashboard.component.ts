@@ -18,11 +18,6 @@ export class DashboardComponent implements OnInit {
 
   public addNewList(title: string): void {
     this.todoListService.add(title);
-    // var newTodoList: TodoList = { id: this.getId(), title: title, todos: [] };
-    // this.lists.push(newTodoList);
     this.todoListInput = '';
-  }
-  private getId(): number {
-    return this.lists.length + 1;
   }
 }

@@ -48,10 +48,14 @@ export class TodoListService {
   }
 
   addItem(newItem: TodoItem, listId: number) {
-    var foundTodoList = this.todoLists.find(
-      (todoList) => todoList.id === listId
-    );
+    var foundTodoList = this.findTodoList(listId);
     foundTodoList?.todos.push(newItem);
+    this.saveTodoLists();
+  }
+
+  deleteItem(removedItemIndex: number, listId: number) {
+    var foundTodoList = this.findTodoList(listId);
+    foundTodoList?.todos.splice(removedItemIndex, 1);
     this.saveTodoLists();
   }
 
@@ -61,6 +65,14 @@ export class TodoListService {
       this.todoLists.splice(index, 1);
       this.saveTodoLists();
     }
+  }
+
+  private findTodoList(listId: number): TodoList | null {
+    var foundTodoList = this.todoLists.find(
+      (todoList) => todoList.id === listId
+    );
+
+    return foundTodoList || null;
   }
 
   private saveTodoLists(): void {

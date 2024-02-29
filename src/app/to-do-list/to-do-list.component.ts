@@ -63,7 +63,8 @@ export class ToDoListComponent implements OnInit {
   public removeTodo(todo: TodoItem): void {
     const index = this.todoList.todos.indexOf(todo);
     if (index !== -1) {
-      this.todoList.todos.splice(index, 1);
+      this.todoListService.deleteItem(index, this.todoList.id);
+      // this.todoList.todos.splice(index, 1);
       this.updateFilteredTodos(); // Update filteredTodos after removing an item
     }
   }
@@ -83,7 +84,9 @@ export class ToDoListComponent implements OnInit {
       .length;
   }
 
-  public closeList(): void {}
+  public closeList(): void {
+    this.todoListService.remove(this.todoList);
+  }
 
   private getId(): number {
     return this.todoList.todos.length + 1;
