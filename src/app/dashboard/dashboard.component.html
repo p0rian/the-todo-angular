@@ -13,8 +13,8 @@
       <div
         *ngFor="let list of lists; let i = index"
         class="absolute"
-        [style.margin-top.px]="i * 50"
-        [style.margin-left.px]="i * 50"
+        [style.margin-top.px]="list.margin.top"
+        [style.margin-left.px]="list.margin.left"
         cdkDrag
         cdkDragBoundary=".toDoListContainer"
       >

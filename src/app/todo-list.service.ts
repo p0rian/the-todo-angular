@@ -39,7 +39,16 @@ export class TodoListService {
     return of(null);
   }
   add(title: string) {
-    var newTodoList: TodoList = { id: this.getId(), title: title, todos: [] };
+    var margin = {
+      top: this.todoLists.length * 50,
+      left: this.todoLists.length * 50,
+    };
+    var newTodoList: TodoList = {
+      id: this.getId(),
+      title: title,
+      margin,
+      todos: [],
+    };
     this.todoLists.push(newTodoList);
     this.saveTodoLists();
   }
