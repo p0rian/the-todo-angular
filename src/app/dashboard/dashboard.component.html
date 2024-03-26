@@ -6,10 +6,18 @@
     </button>
   </div>
   <div class="basis-4/5 bg-blue-500">
-    <div class="toDoListContainer h-full relative flex justify-center flex-wrap overflow-auto items-center relative"
-      #toDoListContainer>
-      <div *ngFor="let list of listsToDisplay; let i = index" class="absolute" [style.margin-top.px]="i * 50"
-        [style.margin-left.px]="i * 50" cdkDrag cdkDragBoundary=".toDoListContainer">
+    <div
+      class="toDoListContainer h-full flex justify-center flex-wrap overflow-auto items-center relative"
+      #toDoListContainer
+    >
+      <div
+        *ngFor="let list of lists; let i = index"
+        class="absolute"
+        [style.margin-top.px]="i * 50"
+        [style.margin-left.px]="i * 50"
+        cdkDrag
+        cdkDragBoundary=".toDoListContainer"
+      >
         <app-to-do-list [todoList]="list"></app-to-do-list>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TodoList } from '../interfaces/todo-list';
 import { TodoListService } from '../todo-list.service';
 
@@ -8,34 +8,16 @@ import { TodoListService } from '../todo-list.service';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  constructor(private todoListService: TodoListService, private renderer: Renderer2) { }
-  @ViewChild('toDoListContainer') listContainer!: ElementRef;
-  public lists: Array<TodoList | null> = [];
+  constructor(private todoListService: TodoListService) {}
+  public lists: TodoList[] = [];
   todoListInput = '';
 
   ngOnInit(): void {
-    this.todoListService.getAll().subscribe((lists) => {
-      this.lists = lists;
-      this.updateListsToDisplay();
-    });
+    this.todoListService.getAll().subscribe((lists) => (this.lists = lists));
   }
 
-  addNewList(title: string): void {
+  public addNewList(title: string): void {
     this.todoListService.add(title);
     this.todoListInput = '';
   }
-
-  private updateListsToDisplay(): void {
-    this.listsToDisplay = this.lists.filter(l => l !== null) as TodoList[];
-  }
-
-  get listsToDisplay(): TodoList[] {
-    return this._listsToDisplay;
-  }
-
-  set listsToDisplay(value: TodoList[]) {
-    this._listsToDisplay = value;
-  }
-
-  private _listsToDisplay: TodoList[] = [];
 }
