@@ -8,12 +8,13 @@ import { TodoItem } from './interfaces/todo-item';
   providedIn: 'root',
 })
 export class TodoListService {
-  private todoLists: TodoList[] = [];
+  private todoLists: Array<TodoList | null> = [];
+  // private todoLists: TodoList[] = [];
   private key: string = 'todoLists';
 
-  constructor(private localService: LocalService) {}
+  constructor(private localService: LocalService) { }
 
-  getAll(): Observable<TodoList[]> {
+  getAll(): Observable<Array<TodoList | null>> {
     const storedTodoLists = this.localService.getData(this.key);
 
     if (storedTodoLists) {
@@ -25,15 +26,15 @@ export class TodoListService {
 
   getById(id: number): Observable<TodoList | null> {
     if (this.todoLists.length > 0) {
-      var foundTodoList = this.todoLists.find((todoList) => todoList.id === id);
+      var foundTodoList = this.todoLists.find((todoList) => todoList?.id === id);
       return of(foundTodoList || null);
     }
 
     const storedTodoLists = this.localService.getData(this.key);
     if (storedTodoLists) {
-      var parsedTodoLists: TodoList[] = JSON.parse(storedTodoLists);
+      var parsedTodoLists: Array<TodoList | null> = JSON.parse(storedTodoLists);
       var foundTodoList = parsedTodoLists.find(
-        (todoList) => todoList.id === id
+        (todoList) => todoList?.id === id
       );
       return of(foundTodoList || null);
     }
@@ -69,7 +70,7 @@ export class TodoListService {
 
   private findTodoList(listId: number): TodoList | null {
     var foundTodoList = this.todoLists.find(
-      (todoList) => todoList.id === listId
+      (todoList) => todoList?.id === listId
     );
 
     return foundTodoList || null;
