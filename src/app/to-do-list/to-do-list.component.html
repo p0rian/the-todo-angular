@@ -1,33 +1,57 @@
 <div class="bg-yellow-200 rounded w-max h-min p-3 shadow-md relative">
   <div class="mb-2 text-center text-xl font-semibold">{{ todoList.title }}</div>
 
-  <img src="assets/close.svg" class="absolute top-0 right-0 cursor-pointer w-7 h-7 p-1" (click)="closeList()" />
+  <img
+    src="assets/close.svg"
+    class="absolute top-0 right-0 cursor-pointer w-7 h-7 p-1"
+    (click)="closeList()"
+  />
+  <img
+    src="assets/move-svgrepo-com.svg"
+    class="absolute top-0 left-0 cursor-pointer w-7 h-7 p-1"
+  />
 
   <div class="my-2">
     <label class="block">Search:</label>
     <input
       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-      type="text" [(ngModel)]="searchText" (input)="updateFilteredTodos()" />
+      type="text"
+      [(ngModel)]="searchText"
+      (input)="updateFilteredTodos()"
+    />
   </div>
 
   <div class="my-2">
     <label>Item name: </label>
     <input
       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-      id="description" #description type="text" [(ngModel)]="todoInput" />
+      id="description"
+      #description
+      type="text"
+      [(ngModel)]="todoInput"
+    />
   </div>
 
-  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded" type="button"
-    (click)="add(description.value)">
+  <button
+    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded"
+    type="button"
+    (click)="add(description.value)"
+  >
     Add item
   </button>
 
   <ul>
-    <li class="my-2 rounded bg-yellow-300 p-1 hover:bg-yellow-400" *ngFor="let todo of filteredTodos">
+    <li
+      class="my-2 rounded bg-yellow-300 p-1 hover:bg-yellow-400"
+      *ngFor="let todo of filteredTodos"
+    >
       <span class="break-words">{{ todo.description }}</span>
       <input type="checkbox" (change)="changeDoneState(todo)" />
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-1 rounded mx-1" type="button"
-        (click)="removeTodo(todo)">
+      <button
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-1 rounded mx-1"
+        type="button"
+        (click)="removeTodo(todo)"
+      >
         remove
       </button>
     </li>

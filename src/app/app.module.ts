@@ -7,7 +7,7 @@ import { ToDoListComponent } from './to-do-list/to-do-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CdkDrag } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragHandle } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [AppComponent, ToDoListComponent, DashboardComponent],
@@ -18,6 +18,7 @@ import { CdkDrag } from '@angular/cdk/drag-drop';
     HttpClientModule,
     BrowserAnimationsModule,
     CdkDrag,
+    CdkDragHandle,
   ],
   providers: [],
   bootstrap: [AppComponent],
