@@ -20,15 +20,13 @@
       class="toDoListContainer h-full flex justify-center flex-wrap overflow-auto items-center relative"
       #toDoListContainer
     >
-      <div
-        *ngFor="let list of lists; let i = index"
-        class="absolute"
-        [style.margin-top.px]="list.margin.top"
-        [style.margin-left.px]="list.margin.left"
-        cdkDrag
-        cdkDragBoundary=".toDoListContainer"
-      >
-        <app-to-do-list [todoList]="list"></app-to-do-list>
+      <div *ngFor="let list of lists; let i = index">
+        <app-to-do-list
+          class="absolute"
+          [style.margin-top.px]="list.margin.top - 150"
+          [style.margin-left.px]="list.margin.left - 150"
+          [todoList]="list"
+        ></app-to-do-list>
       </div>
     </div>
   </div>

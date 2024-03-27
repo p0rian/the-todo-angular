@@ -1,4 +1,8 @@
-<div class="bg-yellow-200 rounded w-max h-min p-3 shadow-md relative">
+<div
+  cdkDrag
+  cdkDragBoundary=".toDoListContainer"
+  class="bg-yellow-200 rounded w-max h-min p-3 shadow-md relative"
+>
   <div class="mb-2 text-center text-xl font-semibold">{{ todoList.title }}</div>
 
   <img
@@ -6,10 +10,12 @@
     class="absolute top-0 right-0 cursor-pointer w-7 h-7 p-1"
     (click)="closeList()"
   />
-  <img
-    src="assets/move-svgrepo-com.svg"
-    class="absolute top-0 left-0 cursor-pointer w-7 h-7 p-1"
-  />
+  <div cdkDragHandle>
+    <img
+      src="assets/move-svgrepo-com.svg"
+      class="absolute top-0 left-0 cursor-pointer w-7 h-7 p-1"
+    />
+  </div>
 
   <div class="my-2">
     <label class="block">Search:</label>
