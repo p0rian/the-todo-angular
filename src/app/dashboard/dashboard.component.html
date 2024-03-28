@@ -21,12 +21,7 @@
       #toDoListContainer
     >
       <div *ngFor="let list of lists; let i = index">
-        <app-to-do-list
-          class="absolute"
-          [style.margin-top.px]="list.margin.top - 150"
-          [style.margin-left.px]="list.margin.left - 150"
-          [todoList]="list"
-        ></app-to-do-list>
+        <app-to-do-list [todoList]="list"></app-to-do-list>
       </div>
     </div>
   </div>
